@@ -1,3 +1,10 @@
 language: ruby
 rvm:
 - 2.1.0
+deploy:
+  provider: heroku
+  api_key:
+    secure: NFMLeJtL1g0rFfvM+/w9snrhspEcqDs4ItC5WF156lWFDZNlmPoROVjnf3/TlrNwDHGFedcY8bFPCmndhjwNV7A9fYFSb5WVxmL/8iFBae2YEa8Y6Q/rqHJCJ9LNE0U3hWv16pZgGnDtRVZP5mEWxndPLyMBDNM630rOWMVi4/c=
+  app: infinite-fjord-3077
+  on:
+    repo: ONSdigital/prototype-frontend
