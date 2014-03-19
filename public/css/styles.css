@@ -2,40 +2,17 @@
 
 body {
     font-family: 'Just Me Again Down Here';
-    color: #DB4F18;
-    background-color: #333;
+    background-color: #DB4F18;
+    color: #333;
     margin: 10px;
-    opacity: 0.7;
-
 }
 
 h1 {
     text-align: center;
-    font-size: 3em;
-}
-
-h2 {
-    text-align: center;
-    font-size: 2em;
-    margin-left: 90px;
-    margin-right: 90px;
+    font-size: 5em;
 }
 
 div#main {
     margin: 50px;
     margin-top: 150px;
-}
-
-a {
-    color: #A34018;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #DB4F18;
-}
-
-footer {
-    font-size: 1em;
-    text-align: center;
 }
