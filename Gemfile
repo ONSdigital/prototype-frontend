@@ -12,5 +12,6 @@ group :development, :test do
   gem 'cucumber-sinatra'
   gem 'rspec'
   gem 'guard-cucumber'
+  gem 'webmock'
 end
 
