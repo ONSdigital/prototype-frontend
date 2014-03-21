@@ -1,5 +1,13 @@
 {
   "measure":60.5,
-  "date":"November 2013",
-  "cdid":"Alcoholic Beverages - SPECIAL INDEX FOR USE IN NSO - Manu excl duty"
+    "dimensions": {
+        "date": {
+            "title": "An Date",
+            "value": "June 1974"
+        },
+        "cdid": {
+            "title": "Product",
+            "value": "Alcoholic Beverages - SPECIAL INDEX FOR USE IN NSO - Manu excl duty"
+        }
+    }
 }
