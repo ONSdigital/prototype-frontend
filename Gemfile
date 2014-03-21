@@ -5,11 +5,14 @@ ruby '2.1.0'
 
 gem 'sinatra'
 gem 'rake'
+gem 'activeresource', '~> 3.2'
 
 group :development, :test do
   gem 'capybara-webkit'
   gem 'cucumber'
   gem 'cucumber-sinatra'
   gem 'rspec'
+  gem 'guard-cucumber'
+  gem 'webmock'
 end
 

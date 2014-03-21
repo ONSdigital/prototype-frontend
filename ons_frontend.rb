@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require_relative 'models/all'
 
 class OnsFrontend < Sinatra::Base
   get '/' do
@@ -6,6 +7,7 @@ class OnsFrontend < Sinatra::Base
   end
 
   get '/series/release/dataset/:observation' do
+    @observation = Observation.find(params[:observation])
     erb :observation
   end
 
