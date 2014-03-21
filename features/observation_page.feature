@@ -4,7 +4,7 @@ Feature: Observation page
   I want to view a page with all the details for a single observation on it
   
   Scenario: get observation page
-    Given the fixture "a-observation-3.json" is available at the URL "http://data-api.com/series/release/dataset/a-observation-3"
+    Given the fixture "a-observation-3.json" is available at the URL "https://data-api.com/series/slug/releases/slug/datasets/slug/observations/a-observation-3.json"
     When I go to the path "/series/release/dataset/a-observation-3"
     Then I should see "60.5"
     And I should see "Date"
