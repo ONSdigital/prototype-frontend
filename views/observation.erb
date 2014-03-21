@@ -127,7 +127,8 @@
 
         <div class="col-md-9">
           <p class="lead">
-            In <strong>December 2013</strong>, the <strong>price index</strong> for <strong>Alcoholic Beverages - SPECIAL INDEX FOR USE IN NSO - Manu incl duty</strong> was...
+            <% #this is probably wrong, we're assuming there's a date here %>
+            In <strong><%= @observation.dimensions.date.value %></strong>, the <strong>price index</strong> for <strong><%= @observation.dimensions.cdid.value %></strong> was...
           </p>
           <div class="well observation">
             <div class="row">            
@@ -177,12 +178,11 @@
           <div class="row">
             <div class="col-sm-6">
               <table class="table">
+                <% @observation.dimensions.attributes.each_pair do |k, v| %>
                 <tr>
-                  <th>Product</th><td>Alcoholic Beverages - SPECIAL INDEX FOR USE IN NSO - Manu incl duty</td>
+                  <th><%= v.title %></th><td><%= v.value %></td>
                 </tr>
-                <tr>
-                  <th>Date</th><td>December 2013</td>
-                </tr>
+                <% end %>
                 <tr>
                   <th><span data-toggle="tooltip" title="Values may be seasonally adjusted because...">Seasonal Adjustment</span></th><td><span data-toggle="tooltip" title="This value is not seasonally adjusted.">NSA</span></td>
                 </tr>
