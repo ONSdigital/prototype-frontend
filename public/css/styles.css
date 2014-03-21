@@ -1,18 +1,60 @@
-@import url('http://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here');
-
 body {
-    font-family: 'Just Me Again Down Here';
-    background-color: #DB4F18;
-    color: #f80;
-    margin: 10px;
+	padding-top: 70px;
 }
 
-h1 {
-    text-align: center;
-    font-size: 5em;
+footer {
+	background-color: #EEE;
 }
 
-div#main {
-    margin: 50px;
-    margin-top: 150px;
+.page-header h1 a {
+	color: black;
+	text-decoration: none;
+}
+
+.page-header h1 small a {
+	color: #999;
+}
+
+h2 {
+	font-size: 16pt;
+}
+
+.observation h3 {
+	font-size: 20px;
+}
+
+.observation {
+	height: 210px;
+}
+
+.observation .main {
+	display: block;
+	text-align: center;
+	margin-top: 5px;
+	font-size: 80px;
+}
+
+.observation .comparison {
+	font-size: 20px;
+}
+
+.observation .comparison-unavailable {
+	color: #999;
+}
+
+.observation a {
+	text-decoration: none;
+	color: black;
+}
+
+.observation .attributes {
+	margin-top: 16px;
+}
+
+#chart {
+	margin: 20px 50px;
+}
+
+.para {
+	margin-bottom: 10px;
 }
