@@ -8,7 +8,6 @@ class OnsFrontend < Sinatra::Base
 
   get '/series/:series/releases/:release/datasets/:dataset/observations/:observation' do
     @observation = Observation.find(params[:observation])
-      puts @observation.dimensions.date.value.inspect
     erb :observation
   end
   
