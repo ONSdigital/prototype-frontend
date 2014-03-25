@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title><%= yield_content :title %></title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Statistics</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Business, Industry and Trade <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><strong>Business</strong></a></li>
+                <li><a href="#">Activity, Size and Location</a></li>
+                <li><a href="#">Business Innovation</a></li>
+                <li><a href="#">Business Services</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><strong>Changes to Business</strong></a></li>
+                <li><a href="#">Bankruptcy/Insolvency</a></li>
+                <li><a href="#">Business Births, Deaths and Survival Rates</a></li>
+                <li><a href="#">Mergers and Acquisitions</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><strong>Construction Industry</strong></a></li>
+                <li class="divider"></li>
+                <li><a href="#"><strong>IT and Internet Industry</strong></a></li>
+                <li class="divider"></li>
+                <li><a href="#"><strong>International Trade</strong></a></li>
+                <li class="divider"></li>
+                <li><a href="#"><strong>Manufacturing and Production Industry</strong></a></li>
+                <li class="divider"></li>
+                <li><a href="#"><strong>Retail Industry</strong></a></li>
+                <li class="divider"></li>
+                <li><a href="#"><strong>Tourism Industry</strong></a></li>
+              </ul>
+            </li>
+            <li class="active dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Economy <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><strong>Economic Output and Productivity</strong></a></li>
+                <li><a href="#">Output</a></li>
+                <li><a href="#">Productivity Measures</a></li>
+                <li><a href="#">Public Service Productivity</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><strong>Environmental Accounts</strong></a></li>
+                <li class="divider"></li>
+                <li><a href="#"><strong>Government, Public Sector and Taxes</strong></a></li>
+                <li><a href="#">Local Government Finance</a></li>
+                <li><a href="#">Public Sector Finance</a></li>
+                <li><a href="#">Public Spending</a></li>
+                <li><a href="#">Research and Development Expenditure</a></li>
+                <li><a href="#">Taxes and Revenue</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><strong>Gross Domestic Product (GDP)</strong></a></li>
+                <li class="divider"></li>
+                <li><a href="#"><strong>Gross Value Added (GVA)</strong></a></li>
+                <li class="divider"></li>
+                <li class="active"><a href="#"><strong>Inflation and Price Indices</strong></a></li>
+                <li class="divider"></li>
+                <li><a href="#"><strong>Investments, Pensions and Trusts</strong></a></li>
+                <li class="divider"></li>
+                <li><a href="#"><strong>National Accounts</strong></a></li>
+                <li><a href="#">Balance of Payments</a></li>
+                <li><a href="#">Satellite Accounts</a></li>
+                <li><a href="#">Supply and Use Tables</a></li>
+                <li><a href="#">UK Sector Accounts</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><strong>Regional Accounts</strong></a></li>
+                <li><a href="#">Gross Disposable Household Income</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Employment and Labour Market</a></li>
+            <li><a href="#">People, Population and Community</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Release Calendar</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+    <%= yield %>
+
+    </div> <!-- /container -->
+
+    <hr>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-3">
+          <h2>Other Datasets</h2>
+          <ul class="list-unstyled">
+            <li><a href="#">PPI - Input - 1 month change</a></li>
+            <li><a href="#">PPI - Input - 12 month change</a></li>
+            <li><a href="#">PPI - Output - 1 month change</a></li>
+            <li><a href="#">PPI - Output - 12 month change</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3">
+          <h2>Release Date</h2>
+          <p>18 February 2014 (latest)</p>
+          <h2>Contact</h2>
+          <address>
+            Kat Pegler<br>
+            Business Prices<br>
+            <a href="mailto:ppi@ons.gsi.gov.uk">ppi@ons.gsi.gov.uk</a><br>
+            <abbr title="Telephone">T</abbr>: +44 (0) 1633 456468
+          </address>
+        </div>
+
+        <div class="col-md-3">
+          <h2>Next Release</h2>
+          <p>25 March 2014</p>
+          <h2>Previous Releases</h2>
+          <ul class="list-unstyled">
+            <li><a href="#">14 January 2014</a></li>
+            <li><a href="#">17 December 2013</a></li>
+            <li><a href="#">12 November 2013</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3">
+          <h2>Methodology</h2>
+          <ul class="list-unstyled">
+            <li><a href="http://www.ons.gov.uk/ons/guide-method/method-quality/quality/quality-information/economy/quality-and-methodology-information-for-producer-price-indices--ppi-.pdf">Quality and Methodology Information (QMI) <small>(95.6 Kb PDF)</small></a></li>
+            <li><a href="http://www.ons.gov.uk/ons/rel/ppi2/producer-price-index/producer-price-index-rebasing--2010-100-/rebasing-the-producer-price-index.html">Impact of Rebasing the Producer Price Index to 2010=100</a></li>
+          </ul>
+          <p class="pull-right">
+            <a href="#"><!-- link to series page -->More information...</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h2>Legal</h2>
+            <ul class="list-unstyled">
+              <li><a href="#">Business Transparency</a></li>
+              <li><a href="#">Terms and Conditions</a></li>
+              <li><a href="#">Copyright</a></li>
+              <li><a href="#">Cookies and Privacy</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h2>About Us</h2>
+            <ul class="list-unstyled">
+              <li><a href="#">Who we are</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Products and Services</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Our Offices</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h2>Connect with us</h2>
+            <ul class="list-unstyled">
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">YouTube</a></li>
+              <li><a href="#">Email Subscriptions</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <p class="text-center"><img src="/images/ogl-symbol-41px-retina-black.png" alt="OGL" height="14">&nbsp;All content is available under the Open Government Licence v2.0 unless otherwise stated.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+      $('.label').tooltip();
+    </script>
+  </body>
+</html>
