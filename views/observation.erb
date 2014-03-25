@@ -128,12 +128,12 @@
         <div class="col-md-9">
           <p class="lead">
             <% #this is probably wrong, we're assuming there's a date here %>
-            In <strong><%= @observation.dimensions.date.value %></strong>, the <strong>price index</strong> for <strong><%= @observation.dimensions.cdid.value %></strong> was...
+            In <strong><%= @observation.dimensions.date.value.title %></strong>, the <strong>price index</strong> for <strong><%= @observation.dimensions.product.value.title %></strong> was...
           </p>
           <div class="well observation">
             <div class="row">            
               <div class="col-sm-6">
-                <p class="main"><%= @observation.measure %></statistic>
+                <p class="main"><%= @observation.price_index %></statistic>
                 <p class="attributes text-center">
                   <span data-toggle="tooltip" title="Limited coverage means that ..." class="label label-danger">limited coverage</span>
                   <span data-toggle="tooltip" title="Provisional means that ..." class="label label-warning">provisional</span>
@@ -180,7 +180,7 @@
               <table class="table">
                 <% @observation.dimensions.attributes.each_pair do |k, v| %>
                 <tr>
-                  <th><%= v.title %></th><td><%= v.value %></td>
+                  <th><%= v.title %></th><td><%= v.value.title %></td>
                 </tr>
                 <% end %>
                 <tr>
