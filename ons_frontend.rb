@@ -1,7 +1,10 @@
 require 'sinatra/base'
+require 'sinatra/content_for'
 require_relative 'models/all'
 
 class OnsFrontend < Sinatra::Base
+  helpers Sinatra::ContentFor
+  
   get '/' do
     'Hello OnsFrontend!'
   end
