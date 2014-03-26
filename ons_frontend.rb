@@ -10,7 +10,11 @@ class OnsFrontend < Sinatra::Base
   end
 
   get '/series/:series/releases/:release/datasets/:dataset/observations/:observation' do
-    @observation = Observation.find(params[:observation])
+    @observation = Observation.find(params[:observation],
+                                    params: { series_id: params[:series],
+                                              release_id: params[:release],
+                                              dataset_id: params[:dataset]}
+                                   )
     erb :observation
   end
   

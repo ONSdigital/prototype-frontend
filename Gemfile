@@ -6,7 +6,7 @@ ruby '2.1.0'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'rake'
-gem 'activeresource', '~> 3.2'
+gem 'activeresource', '~> 4.0'
 
 group :development, :test do
   gem 'capybara-webkit'
@@ -17,4 +17,3 @@ group :development, :test do
   gem 'webmock'
   gem 'shotgun'
 end
-
