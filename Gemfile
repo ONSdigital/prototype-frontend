@@ -5,6 +5,7 @@ ruby '2.1.0'
 
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem 'sinatra-partial'
 gem 'rake'
 gem 'activeresource', '~> 4.0'
 

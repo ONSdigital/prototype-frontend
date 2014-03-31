@@ -1,0 +1,49 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-3">
+      <h2>Other Datasets</h2>
+      <ul class="list-unstyled">
+        <li><a href="#">PPI - Input - 1 month change</a></li>
+        <li><a href="#">PPI - Input - 12 month change</a></li>
+        <li><a href="#">PPI - Output - 1 month change</a></li>
+        <li><a href="#">PPI - Output - 12 month change</a></li>
+      </ul>
+    </div>
+
+    <div class="col-md-3">
+      <h2>Release Date</h2>
+      <p><%= Date.strptime( release.slug, "%Y-%m-%d").strftime("%d %B %Y") %> (latest)</p>
+      <h2>Contact</h2>
+      <address>
+        <%= release.contact.name %><br>
+        <%= release.contact.department %><br>
+        <a href="<%= release.contact.email %>"><%= release.contact.email %></a><br>
+        <abbr title="Telephone">T</abbr>: <%= release.contact.telephone %>
+      </address>
+    </div>
+
+    <div class="col-md-3">
+      <h2>Next Release</h2>
+      <p>25 March 2014</p>
+      <h2>Previous Releases</h2>
+      <ul class="list-unstyled">
+        <li><a href="#">14 January 2014</a></li>
+        <li><a href="#">17 December 2013</a></li>
+        <li><a href="#">12 November 2013</a></li>
+      </ul>
+    </div>
+
+    <div class="col-md-3">
+      <h2>Methodology</h2>
+      <ul class="list-unstyled">
+        <li><a href="http://www.ons.gov.uk/ons/guide-method/method-quality/quality/quality-information/economy/quality-and-methodology-information-for-producer-price-indices--ppi-.pdf">Quality and Methodology Information (QMI) <small>(95.6 Kb PDF)</small></a></li>
+        <li><a href="http://www.ons.gov.uk/ons/rel/ppi2/producer-price-index/producer-price-index-rebasing--2010-100-/rebasing-the-producer-price-index.html">Impact of Rebasing the Producer Price Index to 2010=100</a></li>
+      </ul>
+      <p class="pull-right">
+        <a href="#"><!-- link to series page -->More information...</a>
+      </p>
+    </div>
+
+  </div>
+</div>
