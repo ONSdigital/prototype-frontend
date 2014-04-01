@@ -15,6 +15,18 @@ class OnsFrontend < Sinatra::Base
     erb :index
   end
 
+  get '/series/:series/releases/:release/datasets/:dataset/observations' do
+    @dataset = Dataset.find(params[:dataset], 
+                params: { release_id: params[:release], 
+                          series_id: params[:series] 
+                })
+                
+    @release = Release.find( params[:release], params: { series_id: params[:series] })            
+    @series = Series.find( params[:series])
+
+    erb :"slice/index"
+  end
+    
   get '/series/:series/releases/:release/datasets/:dataset/observations/:observation' do
     @observation = Observation.find(params[:observation],
                                     params: { series_id: params[:series],
