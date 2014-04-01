@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h1>
+    <img src="//onsdigital.github.io/ons-templates/nationalstatitics_tcm119-20491.gif" alt="National Statistic">
+    <a href="/series/producer-price-index"><%= @series.title %></a>,
+    <a href="/series/producer-price-index/releases/<%= @release.slug %>"><!-- link to release --><%= Date.parse( @release.published ).strftime("%B %Y") %></a>
+    <small><a href="/series/producer-price-index/releases/<%= @release.slug %>/datasets/<%= @dataset.slug %>"><!-- link to dataset -->PPI Statistical Bulletin (2010=100, SIC07)</a></small>
+  </h1>
+</div>  

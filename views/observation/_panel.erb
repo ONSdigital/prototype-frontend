@@ -1,0 +1,50 @@
+<div class="well observation">
+  <div class="row">
+    <div class="col-sm-6">
+      <p class="main">
+         <span data-toggle="tooltip" title="<%= @observation.measures.first.description %>"><%= @observation.send(@measure.to_sym) %></span>
+      </p>
+      <p class="attributes text-center">
+        <% if @observation.respond_to?(:unreliable) && @observation.unreliable=='coverage' %>
+          <span data-toggle="tooltip" title="..." class="label label-danger">limited coverage</span>
+        <% end %>
+        <% if @observation.respond_to?(:provisional) && @observation.provisional == "true" %>
+          <span data-toggle="tooltip" title="<%= @observation.data_attributes.attributes['provisional'].description %>" class="label label-warning">provisional</span>
+        <% end %>
+      </p>
+    </div>
+    
+    <% [:previous, :next].each do |axis| %>
+      <div class="col-sm-3">
+        <% observations = @related[axis] %>
+        <% observations.each do |time,observation| %>
+          <div>
+            <% if observation %>
+              <a href="<%= observation.url %>">
+                <h3><%= axis %> <%= time %></h3>
+                <p class="comparison">
+                  <%= observation.send(@measure.to_sym) %> 
+                  <% if axis == :previous
+                      change = ( BigDecimal(@observation.send(@measure.to_sym).to_s) - BigDecimal(observation.send(@measure.to_sym).to_s) ).to_f
+                   else
+                      change = ( BigDecimal(observation.send(@measure.to_sym).to_s) - BigDecimal(@observation.send(@measure.to_sym).to_s) ).to_f
+                   end
+                  %>
+                  <% if change != 0 %>
+                    <span class="glyphicon glyphicon-arrow-<%= change > 0 ? 'up' : 'down' %>"></span> <small><%= change %></small>                  
+                  <% end %>
+                </p>
+              </a>            
+            <% else %>
+                <h3><%= axis %> <%= time %></h3>
+                <p class="comparison comparison-unavailable">
+                  not available
+                </p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>        
+    <% end %>
+
+  </div>
+</div>

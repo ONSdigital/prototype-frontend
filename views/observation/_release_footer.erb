@@ -1,0 +1,56 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-3">
+      <h2>Other Datasets</h2>
+      <ul class="list-unstyled">
+        <% @release.datasets.reject{|x| x.slug == @dataset.slug}.each do |dataset| %>
+          <li><a href="<%= dataset.url %>"><%= dataset.title %></a></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="col-md-3">
+      <h2>Release Date</h2>
+      <p>
+        <%= Date.parse( @release.published ).strftime("%d %B %Y") %> 
+        <% if @release.slug == @series.latest_release.slug %> 
+          (latest)
+        <% end %>
+      </p>
+      <h2>Contact</h2>
+      <address>
+        <%= release.contact.name %><br>
+        <%= release.contact.department %><br>
+        <a href="<%= release.contact.email %>"><%= release.contact.email %></a><br>
+        <abbr title="Telephone">T</abbr>: <%= release.contact.telephone %>
+      </address>
+    </div>
+
+    <div class="col-md-3">
+      <h2>Next Release</h2>
+      <ul class="list-unstyled">
+        <li><a href="<%= @series.next_release.url %>"><%= Date.parse( @series.next_release.published ).strftime("%d %B %Y") %></a>  (scheduled)</li>
+      </ul>
+
+      <h2>Previous Releases</h2>
+      <ul class="list-unstyled">
+        <% @series.releases.reverse[0..2].each do |release| %>
+          <li><a href="<%= release.url %>"><%= Date.parse( release.published ).strftime("%d %B %Y") %></a></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="col-md-3">
+      <h2>Methodology</h2>
+      <ul class="list-unstyled">
+        <li><a href="http://www.ons.gov.uk/ons/guide-method/method-quality/quality/quality-information/economy/quality-and-methodology-information-for-producer-price-indices--ppi-.pdf">Quality and Methodology Information (QMI) <small>(95.6 Kb PDF)</small></a></li>
+        <li><a href="http://www.ons.gov.uk/ons/rel/ppi2/producer-price-index/producer-price-index-rebasing--2010-100-/rebasing-the-producer-price-index.html">Impact of Rebasing the Producer Price Index to 2010=100</a></li>
+      </ul>
+      <p class="pull-right">
+        <a href="#"><!-- link to series page -->More information...</a>
+      </p>
+    </div>
+
+  </div>
+</div>
