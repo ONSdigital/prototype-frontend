@@ -1,0 +1,122 @@
+<% content_for :title do %>
+    <%= @series.title %> | <%= Date.parse( @release.published ).strftime("%B %Y") %> | <%= @dataset.title %> | Slice
+<% end %>
+<% content_for :styles do %>
+  <link rel="stylesheet" href="/css/rickshaw.css">
+<% end %>
+<% content_for :scripts do %>
+  <!-- D3 CDN -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.2/d3.min.js"></script>
+
+  <script src="/javascript/rickshaw.min.js"></script>
+  <script src="/javascript/moment.min.js"></script>
+  
+    <script type="text/javascript">
+var graph = new Rickshaw.Graph.Ajax( {
+
+    dataURL: '<%= @data_url %>',
+    onData: function(d) { return d },
+    onComplete: function(transport) {
+      var graph = transport.graph;      
+      var x_axis = new Rickshaw.Graph.Axis.Time( { 
+        graph: graph,
+      } );
+      
+      var y_axis = new Rickshaw.Graph.Axis.Y( {
+              graph: graph,
+              element: document.getElementById('y_axis'),
+      } );
+      
+      var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+          graph: graph,
+          xFormatter: function(x) { return moment.unix(x).format('MMM YYYY') }
+      } );
+      
+      graph.render();
+    },
+    element: document.querySelector("#chart"), 
+    renderer: 'line',
+    width: 700, 
+    height: 400, 
+    padding: {
+      top: 0.1
+    },
+    series: [{
+        name: '<%= @dataset.measures.first.title %>',
+        color: 'steelblue',
+        }]
+    } );
+
+    </script>  
+<% end %>
+
+<div class="container">
+
+  <%= partial :"include/page_header" %>
+
+  <div class="row">
+
+    <div class="col-md-9">
+      <p class="lead">
+        <strong>Time series</strong> for the <strong><%= @dataset.measures.first.title %></strong> for 
+        <strong>(TODO) Alcoholic Beverages - SPECIAL INDEX FOR USE IN NSO - Manu incl duty</strong>.
+      </p>
+      <div class="well chart">
+        <div id="chart">
+        </div>
+      </div>
+      <p>
+         <%= @series.description %>
+      </p>
+      <h2>Release Notes</h2>
+      <p><%= @release.description %></p>
+      <p><%= @release.notes %></p>
+      
+    </div>
+
+    <div class="col-md-3 panel panel-default">
+      <div class="panel-body">
+        <a class="btn btn-primary btn-block">
+          <span class="glyphicon glyphicon-save"></span> Download the full dataset
+        </a>
+        <a class="btn btn-default btn-block">
+          <span class="glyphicon glyphicon-save"></span> Download this time series
+        </a>
+        <h2>Compare</h2>
+        <div>
+          <a class="btn btn-link" href="slice-all.html">
+            <span class="glyphicon glyphicon-stats"></span> Other products
+          </a>
+        </div>
+        <h2>Explore</h2>
+        <div class="dropdown">
+          <button class="btn btn-link dropdown-toggle" data-toggle="dropdown"><span class="caret"></span> Other products</button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Soft drinks; mineral waters and other bottled waters</a></li>
+            <li><a href="#">Net Sector Output - Output of Manufactured Products</a></li>
+            <li><a href="#">Net Sector Output - All Manufacturing excluding duty</a></li>
+          </ul>
+        </div>
+        <h2>Subscribe</h2>
+        <div>
+          <a class="btn btn-link" href="obs-mc6a.html">
+            <span class="glyphicon glyphicon-bookmark"></span> Latest data
+          </a>
+        </div>
+        <div>
+          <a class="btn btn-link" href="#">
+            <span class="glyphicon glyphicon-envelope"></span> Email
+          </a>
+        </div>
+        <hr>
+        <p class="text-center">
+          <a class="btn btn-link btn-sm" href="obs-mc6a-2013dec.json">JSON</a>
+          <a class="btn btn-link btn-sm" href="obs-mc6a-2013dec.xml">XML</a>
+          <a class="btn btn-link btn-sm" href="obs-mc6a-2013dec.rdf">RDF</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</div> <!-- /container -->

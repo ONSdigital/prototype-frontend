@@ -15,6 +15,37 @@ class OnsFrontend < Sinatra::Base
     erb :index
   end
 
+  get '/series/:series/releases/:release/datasets/:dataset/slice' do
+    @dataset = Dataset.find(params[:dataset], 
+                params: { release_id: params[:release], 
+                          series_id: params[:series] 
+                })
+                
+    @release = Release.find( params[:release], params: { series_id: params[:series] })            
+    @series = Series.find( params[:series])
+
+    @data_url = request.fullpath.gsub("/slice", "/slice-data")
+    erb :"slice/index"
+  end
+
+  get '/series/:series_id/releases/:release_id/datasets/:dataset_id/slice-data' do
+    @observations = Observation.find(:all, params: params )  
+    data_points = []
+    
+    @observations.each do |obs|
+      value = obs.send( obs.measures.first.slug.to_sym )
+      #TODO improve date dimension so we have better values, also handle quarters
+      obs_date = obs.date
+      obs_date = "#{obs_date}-01-01" if obs_date.length == 4
+      date = Date.parse( obs_date ).to_time.to_i
+      data_points << { x: date, y: value}
+    end
+    data_points.sort!{ |a,b| a[:x] <=> b[:x] } 
+    response = [ { name: @observations.first.measures.first.slug, data: data_points } ]
+    content_type :json
+    response.to_json
+  end    
+        
   get '/series/:series/releases/:release/datasets/:dataset/observations/:observation' do
     @observation = Observation.find(params[:observation],
                                     params: { series_id: params[:series],
