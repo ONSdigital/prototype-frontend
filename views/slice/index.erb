@@ -58,9 +58,9 @@ var graph = new Rickshaw.Graph.Ajax( {
 
     <div class="col-md-9">
       <p class="lead">
-        <strong>Time series</strong> for the <strong><%= @dataset.measures.first.title %></strong> for 
-        <strong>(TODO) Alcoholic Beverages - SPECIAL INDEX FOR USE IN NSO - Manu incl duty</strong>.
+        <%= partial :"slice/title" %>
       </p>
+      
       <div class="well chart">
         <div id="chart">
         </div>

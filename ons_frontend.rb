@@ -23,7 +23,20 @@ class OnsFrontend < Sinatra::Base
                 
     @release = Release.find( params[:release], params: { series_id: params[:series] })            
     @series = Series.find( params[:series])
-
+     
+    @dataset.dimensions.attributes.each do |id,dimension|
+      if params[id] && dimension.type == "dimension"
+        @dimension = dimension
+        @dimension_value = dimension.values.select{|x| x.notation == params[id]}.first
+      end
+      if params[id] && dimension.type == "timedimension"
+        @time_dimension = dimension
+        #strip off "/*" from value to get the date part from the dimensions concept scheme
+        date_id = params[id].split("/").first
+        @time_dimension_value = dimension.values.select{|x| x.notation == date_id }.first
+      end
+    end
+        
     @data_url = request.fullpath.gsub("/slice", "/slice-data")
     erb :"slice/index"
   end
