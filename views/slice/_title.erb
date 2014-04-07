@@ -1,0 +1,15 @@
+<strong>Time series</strong> for the 
+  <strong>
+    <span data-toggle="tooltip" title="<%= @dataset.measures.first.description %>">
+      <%= @dataset.measures.first.title %>
+    </span>
+</strong>
+for 
+<strong>
+  <span data-toggle="tooltip" title="<%= @dimension_value.description %>">
+      <%= @dimension_value.title %>
+    </span>
+</strong>
+<% if @time_dimension %>
+  in <strong><%= @time_dimension_value.title %></strong>
+<% end %>

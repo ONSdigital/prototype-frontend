@@ -2,7 +2,7 @@
     <%= @series.title %> | <%= Date.parse( @release.published ).strftime("%B %Y") %> | <%= @dataset.title %> | Slice
 <% end %>
 <% content_for :styles do %>
-  <link rel="stylesheet" href="/css/rickshaw.css">
+  <link rel="stylesheet" href="/css/rickshaw.css">  
 <% end %>
 <% content_for :scripts do %>
   <!-- D3 CDN -->
@@ -29,7 +29,12 @@ var graph = new Rickshaw.Graph.Ajax( {
       
       var hoverDetail = new Rickshaw.Graph.HoverDetail( {
           graph: graph,
-          xFormatter: function(x) { return moment.unix(x).format('MMM YYYY') }
+          xFormatter: function(x) { return moment.unix(x).format('MMM YYYY') },
+          formatter: function(series, x, y, formattedX, formattedY, d) {
+              var provisional = (d.value.provisional == 'false' ? '' : '&nbsp;(Provisional)');
+              var content = series.name + ": " + parseInt(y) + '<br>' + provisional;
+              return content;                              
+          }  
       } );
       
       graph.render();
@@ -58,9 +63,9 @@ var graph = new Rickshaw.Graph.Ajax( {
 
     <div class="col-md-9">
       <p class="lead">
-        <strong>Time series</strong> for the <strong><%= @dataset.measures.first.title %></strong> for 
-        <strong>(TODO) Alcoholic Beverages - SPECIAL INDEX FOR USE IN NSO - Manu incl duty</strong>.
+        <%= partial :"slice/title" %>
       </p>
+      
       <div class="well chart">
         <div id="chart">
         </div>
