@@ -59,6 +59,34 @@ class OnsFrontend < Sinatra::Base
     response.to_json
   end    
         
+  
+  get '/series/:series_id/releases/:release_id/datasets/:dataset_id/observations' do
+      @dataset = Dataset.find(params[:dataset_id], 
+                  params: { release_id: params[:release_id], 
+                            series_id: params[:series_id] 
+                  })
+    
+    missing_dimensions = false
+    @dataset.dimensions.attributes.each do |id,dimension|
+      missing_dimensions = true if !params[id]
+    end
+                            
+    if missing_dimensions
+      status 400
+      "Specify values for all dimensions"
+    else
+      @observation = Observation.find(:all, params: params).first
+      if @observation
+        status 303
+        redirect @observation.url
+      else
+        status 404
+        "Cannot find observation with those dimension values"
+      end
+    end
+    
+  end
+  
   get '/series/:series/releases/:release/datasets/:dataset/observations/:observation' do
     @observation = Observation.find(params[:observation],
                                     params: { series_id: params[:series],
