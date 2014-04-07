@@ -42,11 +42,16 @@ class OnsFrontend < Sinatra::Base
   end
 
   get '/series/:series_id/releases/:release_id/datasets/:dataset_id/slice-data' do
+    @dataset = Dataset.find(params[:dataset_id], 
+                params: { release_id: params[:release_id], 
+                          series_id: params[:series_id] 
+                })
+                
     @observations = Observation.find(:all, params: params )  
     data_points = []
     
     @observations.each do |obs|
-      value = obs.send( obs.measures.first.slug.to_sym )
+      value = obs.send( @dataset.measures.first.slug )
       #TODO improve date dimension so we have better values, also handle quarters
       obs_date = obs.date
       obs_date = "#{obs_date}-01-01" if obs_date.length == 4
@@ -54,7 +59,7 @@ class OnsFrontend < Sinatra::Base
       data_points << { x: date, y: value, provisional: obs.provisional}
     end
     data_points.sort!{ |a,b| a[:x] <=> b[:x] } 
-    response = [ { name: @observations.first.measures.first.slug, data: data_points } ]
+    response = [ { name: @dataset.measures.first.slug, data: data_points } ]
     content_type :json
     response.to_json
   end    
