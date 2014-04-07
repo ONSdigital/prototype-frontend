@@ -48,7 +48,7 @@
     </div>
     <hr>
     <p class="text-center">
-      <a class="btn btn-link btn-sm" href="obs-mc6a-2013dec.json">JSON</a>
+      <a class="btn btn-link btn-sm" href="<%= ENV["DATA_API_URL"] + request.fullpath + '.json' %>">JSON</a>
       <a class="btn btn-link btn-sm" href="obs-mc6a-2013dec.xml">XML</a>
       <a class="btn btn-link btn-sm" href="obs-mc6a-2013dec.rdf">RDF</a>
     </p>
