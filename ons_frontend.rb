@@ -51,7 +51,7 @@ class OnsFrontend < Sinatra::Base
       obs_date = obs.date
       obs_date = "#{obs_date}-01-01" if obs_date.length == 4
       date = Date.parse( obs_date ).to_time.to_i
-      data_points << { x: date, y: value}
+      data_points << { x: date, y: value, provisional: obs.provisional}
     end
     data_points.sort!{ |a,b| a[:x] <=> b[:x] } 
     response = [ { name: @observations.first.measures.first.slug, data: data_points } ]
