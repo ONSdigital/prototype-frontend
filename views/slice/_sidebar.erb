@@ -3,32 +3,29 @@
     <a class="btn btn-primary btn-block">
       <span class="glyphicon glyphicon-save"></span> Download the full dataset
     </a>
+    <a class="btn btn-default btn-block">
+      <span class="glyphicon glyphicon-save"></span> Download this time series
+    </a>
     <h2>Compare</h2>
     <div>
-      <a class="btn btn-link" href="/series/<%= @series.slug %>/releases/<%= @release.slug %>/datasets/<%= @dataset.slug %>/slice?product=<%= @observation.product %>">
-        <span class="glyphicon glyphicon-stats"></span> Change over time
-      </a>
-    </div>
-    <div>
-      <a class="btn btn-link" href="">
+      <a class="btn btn-link" href="slice-all.html">
         <span class="glyphicon glyphicon-stats"></span> Other products
       </a>
     </div>
     <h2>Explore</h2>
     <div class="dropdown">
-      <button class="btn btn-link dropdown-toggle" data-toggle="dropdown"><span class="caret"></span> Other time periods</button>
-      <ul class="dropdown-menu">
-        <% if @related[:previous][:month] %>
-          <li><a href="<%= @related[:previous][:month].url %>"><%= @related[:previous][:month].date %></a></li>
-        <% end %>
-      </ul>
-    </div>
-    <div class="dropdown">
       <button class="btn btn-link dropdown-toggle" data-toggle="dropdown"><span class="caret"></span> Other products</button>
       <ul class="dropdown-menu">
         <% @dataset.dimensions.attributes["product"].values.sample(10).each do |product| %>
           <li>
-            <a href="/series/<%= @series.slug %>/releases/<%= @release.slug %>/datasets/<%= @dataset.slug %>/observations?product=<%= product.notation %>&date=<%=@observation.date%>">
+            <%
+                slice_params = {
+                  :product => product.notation,
+                  :date => params[:date]
+                }
+                slice_params["value.type"] = params[:"value.type"] if params[:"value.type"]
+             %>
+            <a href="/series/<%= @series.slug %>/releases/<%= @release.slug %>/datasets/<%= @dataset.slug %>/slice?<%= URI.encode_www_form( slice_params ) %>">
               <%= product.title %>
             </a>
           </li>
@@ -38,7 +35,7 @@
     <h2>Subscribe</h2>
     <div>
       <a class="btn btn-link" href="obs-mc6a.html">
-        <span class="glyphicon glyphicon-bookmark"></span> Latest figure
+        <span class="glyphicon glyphicon-bookmark"></span> Latest data
       </a>
     </div>
     <div>
@@ -48,7 +45,7 @@
     </div>
     <hr>
     <p class="text-center">
-      <a class="btn btn-link btn-sm" href="<%= data_api_url + request.fullpath + '.json' %>">JSON</a>
+      <a class="btn btn-link btn-sm" href="<%= data_api_url + '/series/' + @series.slug + '/releases/' + @release.slug + ' /datasets/' + @dataset.slug + '/observations.json?' + request.query_string %>">JSON</a>
       <a class="btn btn-link btn-sm" href="">XML</a>
       <a class="btn btn-link btn-sm" href="">RDF</a>
     </p>
