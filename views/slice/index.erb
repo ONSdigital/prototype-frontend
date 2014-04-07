@@ -79,48 +79,7 @@ var graph = new Rickshaw.Graph.Ajax( {
       
     </div>
 
-    <div class="col-md-3 panel panel-default">
-      <div class="panel-body">
-        <a class="btn btn-primary btn-block">
-          <span class="glyphicon glyphicon-save"></span> Download the full dataset
-        </a>
-        <a class="btn btn-default btn-block">
-          <span class="glyphicon glyphicon-save"></span> Download this time series
-        </a>
-        <h2>Compare</h2>
-        <div>
-          <a class="btn btn-link" href="slice-all.html">
-            <span class="glyphicon glyphicon-stats"></span> Other products
-          </a>
-        </div>
-        <h2>Explore</h2>
-        <div class="dropdown">
-          <button class="btn btn-link dropdown-toggle" data-toggle="dropdown"><span class="caret"></span> Other products</button>
-          <ul class="dropdown-menu">
-            <li><a href="#">Soft drinks; mineral waters and other bottled waters</a></li>
-            <li><a href="#">Net Sector Output - Output of Manufactured Products</a></li>
-            <li><a href="#">Net Sector Output - All Manufacturing excluding duty</a></li>
-          </ul>
-        </div>
-        <h2>Subscribe</h2>
-        <div>
-          <a class="btn btn-link" href="obs-mc6a.html">
-            <span class="glyphicon glyphicon-bookmark"></span> Latest data
-          </a>
-        </div>
-        <div>
-          <a class="btn btn-link" href="#">
-            <span class="glyphicon glyphicon-envelope"></span> Email
-          </a>
-        </div>
-        <hr>
-        <p class="text-center">
-          <a class="btn btn-link btn-sm" href="obs-mc6a-2013dec.json">JSON</a>
-          <a class="btn btn-link btn-sm" href="obs-mc6a-2013dec.xml">XML</a>
-          <a class="btn btn-link btn-sm" href="obs-mc6a-2013dec.rdf">RDF</a>
-        </p>
-      </div>
-    </div>
+    <%= partial :"slice/sidebar" %>
 
   </div>
 
