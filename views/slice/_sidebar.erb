@@ -20,9 +20,9 @@
           <li>
             <%
                 slice_params = {
-                  :product => product.notation,
-                  :date => params[:date]
+                  :product => product.notation
                 }
+                slice_params["date"] = params["date"] if params["date"]
                 slice_params["value.type"] = params[:"value.type"] if params[:"value.type"]
              %>
             <a href="/series/<%= @series.slug %>/releases/<%= @release.slug %>/datasets/<%= @dataset.slug %>/slice?<%= URI.encode_www_form( slice_params ) %>">

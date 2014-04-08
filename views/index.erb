@@ -6,22 +6,104 @@
   <h1>ONS Statistics Prototype</h1>
   
   <p>
-  The following links provide some starting points for navigating the prototype
+  This is a prototype application that explores ideas for publishing statistical data on the web. The application was built by the 
+  <a href="http://theodi.org">Open Data Institute</a> on behalf of the Office of National Statistics. Some <a href="http://digitalpublishing.ons.gov.uk/2014/04/01/fresh-thinking-ons-and-the-odi/">background on the 
+  project</a> has been publised on the ONS Digital Publishing blog.
+  </p>
+  
+  <p>
+  Links are provided below to additional documentation on both the prototype and some wider thinking around a suitable application architecture. 
   </p>
 
-  <h2>Slices</h2>
+  <h2>The Dataset</h2>
   
-  <ul>
-    <li>A slice showing <a href="/series/producer-price-index/releases/2014-02-18/datasets/ppi-csdb-ds/slice?product=MC3Y">all monthly data points for MC3Y</a></li>    
-    <li>A slice showing <a href="/series/producer-price-index/releases/2014-02-18/datasets/ppi-csdb-ds/slice?product=MC3Y&date=*">all annual data points for MC3Y</a></li>    
-    <li>A slice showing <a href="/series/producer-price-index/releases/2014-02-18/datasets/ppi-csdb-ds/slice?product=MC3Y&date=2007/*&value.type=month">all monthly data points for MC3Y in 2007</a></li>    
+  <p>
+  The application has been built around a single ONS dataset. Specifically <a href="http://www.ons.gov.uk/ons/rel/ppi2/producer-price-index/february-2014/index.html">the February 2014</a> 
+  release of the <a href="http://www.ons.gov.uk/ons/rel/ppi2/producer-price-index/index.html">Producer Price Index</a>. 
+  </p>
+  
+  <p>
+  The dataset and some additional metadata about its structure and release history have been <a href="https://github.com/ONSdigital/ons-poc-data">converted into JSON</a> which 
+  has then been loaded into MongoDB. While organised as JSON documents, the data uses the basic model described in 
+  <a href="http://www.w3.org/TR/vocab-data-cube/">the DataCube vocabulary</a>. 
+  </p>  
+  
+  <h2>The Prototype</h2>
+  
+  <p>
+  The prototype application is <a href="https://github.com/ONSdigital/prototype-frontend">a simple web application</a> which is backed by 
+  <a href="https://github.com/ONSdigital/ons-data-api">a data API</a> that interacts with MongoDB. 
+  </p>
+  
+  <p>
+  The following links provide some starting points for navigating the prototype.
+  </p>
+
+  <h4>Slices</h4>
+  
+  <p>
+  Slices are views onto a dataset. A slice extracts observations from a dataset based on specific values for the dimensions. A simple example of a 
+  slice is a time series. For example in the Producer Price Index a slice might show 
+  <a href="/series/producer-price-index/releases/2014-02-18/datasets/ppi-csdb-ds/slice?product=K387">the monthly price index for Computer, electronic and optical products (K387)
+  from January 1996-January 2014</a>.
+  </p>
+
+  <p>
+  Slices are dynamically generated from the data and can use knowledge of the dimensions in order to support more flexible queries. By default slices show the most fine-grained data points. In the 
+  example dataset these are monthly figures. But slices can also be generated that show:
+  </p>
+    
+  <ul> 
+    <li>The <a href="/series/producer-price-index/releases/2014-02-18/datasets/ppi-csdb-ds/slice?product=K387&date=*">annual price indexes for Computer, electronic and optical products (K387)</a></li>    
+    <li>The <a href="/series/producer-price-index/releases/2014-02-18/datasets/ppi-csdb-ds/slice?product=K387&date=1998/*&value.type=month">monthly price indexes in 1998 only</a></li>  
+    <li>Or, <a href="/series/producer-price-index/releases/2014-02-18/datasets/ppi-csdb-ds/slice?product=K387&date=2013Q4/*&value.type=month">the monthly price indexes for 2013 Q4</a></li>  
   </ul>
   
-  <h2>Observations</h2>
+  <h4>Observations</h4>
+  
+  <p>
+  Observations are individual measurements in a dataset. By giving every data point a URL it becomes possible to link to and navigate through a dataset in many different ways. It also 
+  becomes possible to provide all of the necessary context required to interpret a data point.
+  </p>
+  
+  <p>
+  For example this observation shows <a href="/series/producer-price-index/releases/2014-02-18/datasets/ppi-csdb-ds/observations/mc6a-2013dec">the December 2013 price index for alcoholic beverages</a>.
+  <p>
+  
+  The observation page includes context that shows how the index has changed in the last month and year. In the above example there are also clear indicators that the data is still provisional and is based on limited coverage of 
+  the industry sector. The same page also provides additional notes and commentary from the release of the dataset.
+  </p>
+  
+  <p>
+  ONS statistical releases often include "reference tables" that summarise the figures in the main dataset associated with the release. These reference tables can also be treated as individual 
+  datasets that contain observations. 
+  </p>
+  
+  <p>
+  This allows analysis to be linked directly to supporting data:
+  </p>
+  
+  <blockquote>
+  "The output price index for goods produced by UK manufacturers (factory gate prices), rose 
+    <a href="/series/producer-price-index/releases/2014-02-18/datasets/ouput12mthchange/observations/obs-ouput12mthchange-jvz7-2014jan">0.9% in the year to January 2014</a>"
+  </blockquote>
+        
+  <h2>The Code</h2>
+  
+  <p>The application and all supporting code is written in Ruby and has been published on github:</p>
   
   <ul>
-    <li><a href="/series/producer-price-index/releases/2014-02-18/datasets/ppi-csdb-ds/observations/mc6a-2013dec">an observation</a> from the most recent release of the PPI</li>
-    <li><a href="/series/producer-price-index/releases/2014-02-18/datasets/input12mthchange/observations/obs-input12mthchange-k655-2014jan">an observation from a reference table</a> associated with that release</li>
+    <li><a href="https://github.com/ONSdigital/ons-poc-data">Data collection scripts</a></li>
+    <li>Simple <a href="https://github.com/ONSdigital/ons_data_models">domain models</a> for interacting with the JSON data in Mongo</li>
+    <li>The <a href="https://github.com/ONSdigital/ons-data-api">data API</a> provides a way for multiple applications to query and extract data</li>
+    <li>The <a href="https://github.com/ONSdigital/prototype-frontend">prototype frontend</a> is one possible way to present data extracted from the API</li>
   </ul>
+    
+  <h2>Additional Documentation</h2>
   
+  <ul>
+    <li><a href="/about/system-architecture">System Architecture</a></li>
+    <li><a href="/about/system-architecture">Technical Architecture</a></li>
+  </ul>    
+    
 </div>

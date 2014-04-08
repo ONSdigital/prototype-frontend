@@ -8,6 +8,7 @@ gem 'sinatra-contrib'
 gem 'sinatra-partial'
 gem 'rake'
 gem 'activeresource', '~> 4.0'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'capybara-webkit'

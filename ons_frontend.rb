@@ -2,7 +2,15 @@ require 'sinatra/base'
 require 'sinatra/content_for'
 require 'sinatra/partial'
 require 'bigdecimal'
+require 'redcarpet'
+
 require_relative 'models/all'
+
+class BootstrapHTML < Redcarpet::Render::HTML
+  def table(header, body)
+    return "<table class='table'>" + header + body + "</table>"
+  end
+end
 
 class OnsFrontend < Sinatra::Base
   helpers Sinatra::ContentFor
@@ -15,6 +23,15 @@ class OnsFrontend < Sinatra::Base
     erb :index
   end
 
+  get '/about/:slug' do
+    path = File.join( File.dirname(__FILE__), "docs", "#{params[:slug]}.md" )
+    error 404 unless File.exist?( path )
+    renderer = BootstrapHTML.new( :with_toc_data => true )
+    markdown = Redcarpet::Markdown.new(renderer, :autolink => true, :tables => true )
+    @document = markdown.render( File.read(path) )
+    erb :docs
+  end
+  
   get '/series/:series/releases/:release/datasets/:dataset/slice' do
     @dataset = Dataset.find(params[:dataset], 
                 params: { release_id: params[:release], 
