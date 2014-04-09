@@ -10,7 +10,7 @@
   
     <div class="col-md-9">
       <p class="lead">
-        In <strong><%= @observation.dimensions.date.value.title %></strong>, the <strong><%= @observation.measures.first.title %></strong> for <strong><%= @observation.dimensions.product.value.title %></strong> was...
+        <%= partial :"observation/title" %>
       </p>
       
       <%= partial :"observation/panel" %>
