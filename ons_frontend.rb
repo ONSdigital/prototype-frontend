@@ -76,7 +76,7 @@ class OnsFrontend < Sinatra::Base
       data_points << { x: date, y: value, provisional: obs.provisional}
     end
     data_points.sort!{ |a,b| a[:x] <=> b[:x] } 
-    response = [ { name: @dataset.measures.first.slug, data: data_points } ]
+    response = [ { name: @dataset.measures.first.title, data: data_points } ]
     content_type :json
     response.to_json
   end    
