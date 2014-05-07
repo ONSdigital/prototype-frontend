@@ -45,6 +45,10 @@ The time series graphs are displayed using the [Rickshaw](http://code.shuttersto
 
 ## Deploying the Frontend
 
+Note: to develop with the front end application you will need to have a copy of the data API deployed, see the [API deployment notes](https://github.com/ONSdigital/ons-data-api#deploying-the-api) in the `ons-data-api` project.
+
+The API could be running locally, to give a complete sandboxed environment. Or several developers could share an API deployed to a shared location.
+
 ### Installation
 
 First install the basic dependencies:
