@@ -21,7 +21,7 @@ The application is made up of three components:
 * A [statistical data API](https://github.com/ONSdigital/ons-data-api) which provides access to the raw data, this is deployed separately
 * Some [domain objects capturing the data model](https://github.com/ONSdigital/ons_data_models) used in the API (only)
 
-The application is intended to be backed by a Mongo database which stores the underlying statistical data. 
+The application is intended to be backed by a Mongo database which stores the underlying statistical data.
 
 The API provides views over that data for use in the prototype website or, potentially, other applications.
 
@@ -35,7 +35,7 @@ For more detail on the design and implementation of each of the components, cons
 
 The rest of this README has some notes on how to deploy the frontend only.
 
-### Application Overview
+## Application Overview
 
 The frontend is a Sinatra application with templates that use ERB. 
 
